@@ -17,9 +17,14 @@ class NotesHomePage extends StatefulWidget {
 class _NotesHomePageState extends State<NotesHomePage> {
   @override
   void initState() {
+    getNotesFromBloc();
+    super.initState();
+  }
+
+  void getNotesFromBloc() {
+    print('getNotesFromBloc() called');
     final bloc = BlocProvider.of<NotesCubit>(context);
     bloc.getAllNotes();
-    super.initState();
   }
 
   String? title;
@@ -27,6 +32,8 @@ class _NotesHomePageState extends State<NotesHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print("notes home page build...........");
+    // getNotesFromBloc();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
@@ -47,7 +54,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
                     padding: EdgeInsets.all(20),
                     child: Text(
                       "No Notes Present!",
-                      style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     )),
               );
             } else if (notes != null && notes.isNotEmpty) {

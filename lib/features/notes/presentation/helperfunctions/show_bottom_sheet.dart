@@ -1,4 +1,3 @@
-
 import 'package:assign_notes_app_clean_architecture_tdd/features/notes/domain/entities/note.dart';
 import 'package:assign_notes_app_clean_architecture_tdd/features/notes/presentation/bloc/cubit/notes_cubit.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ class HelperFunctions {
       context: ctx,
       isScrollControlled: true,
       builder: (BuildContext ctx) {
-           print('note: id : $id, title: $title, description: $description, dateTime: $dateTime');
+        print('note: id : $id, title: $title, description: $description, dateTime: $dateTime');
         return SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(12),
@@ -42,7 +41,7 @@ class HelperFunctions {
                       final bloc = BlocProvider.of<NotesCubit>(ctx);
                       if (isEditNote) {
                         print('editting note');
-                     
+
                         if ((description != null && description!.isNotEmpty) && (id != null)) {
                           bloc.editANote(
                             NoteEntity(id: id, title: title!, description: description!, dateTime: dateTime!),

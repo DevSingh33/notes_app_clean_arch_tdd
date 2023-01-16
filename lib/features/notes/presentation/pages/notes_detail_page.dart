@@ -3,18 +3,16 @@ import 'package:assign_notes_app_clean_architecture_tdd/features/notes/presentat
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NoteDetails extends StatefulWidget {
+class NoteDetails extends StatelessWidget {
   final int id;
   final String title;
   final String description;
   final String dateTime;
   const NoteDetails({super.key, required this.id, required this.title, required this.description, required this.dateTime});
 
-  @override
-  State<NoteDetails> createState() => _NoteDetailsState();
-}
+  
 
-class _NoteDetailsState extends State<NoteDetails> {
+
   @override
   Widget build(BuildContext context) {
     final deviceSettings = MediaQuery.of(context).size;
@@ -27,8 +25,7 @@ class _NoteDetailsState extends State<NoteDetails> {
           IconButton(
               onPressed: () {
                 final bloc = BlocProvider.of<NotesCubit>(context);
-
-                bloc.deleteANote(widget.id);
+                bloc.deleteANote(id);
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.delete))
@@ -37,10 +34,8 @@ class _NoteDetailsState extends State<NoteDetails> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           HelperFunctions.showBottomSheet(
-              isEditNote: true, id: widget.id, ctx: context, title: widget.title, description: widget.description, dateTime: widget.dateTime);
-          setState(() { //todo : UI not updating
-            print('set state called');
-          });
+              isEditNote: true, id: id, ctx: context, title:title, description: description, dateTime: dateTime);
+          
         },
         child: const Icon(Icons.edit, color: Colors.white),
       ),
@@ -49,7 +44,7 @@ class _NoteDetailsState extends State<NoteDetails> {
           padding: const EdgeInsets.all(12),
           child: Column(
             children: [
-              Text(widget.title, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 28)),
+              Text(title, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 28)),
               const SizedBox(height: 40),
               Container(
                 height: deviceSettings.height * 0.6,
@@ -59,12 +54,12 @@ class _NoteDetailsState extends State<NoteDetails> {
                   scrollDirection: Axis.vertical,
                   child: Padding(
                     padding: const EdgeInsets.all(5),
-                    child: Text(widget.description, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+                    child: Text(description, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
                   ),
                 ),
               ),
               const Spacer(),
-              Text('Created At: ${widget.dateTime}', style: const TextStyle(fontSize: 18)),
+              Text('Created At: $dateTime', style: const TextStyle(fontSize: 18)),
             ],
           ),
         ),

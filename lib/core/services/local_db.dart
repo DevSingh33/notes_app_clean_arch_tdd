@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 
 //CLass for handling local database(SQFlite) and it's services like (CRUD operations)
 class DbService {
-  late final Database? _db;
+  static  Database? _db;
 
   ///[createDB] to create the sql database in users device
   Future<Database> createDB() async {
