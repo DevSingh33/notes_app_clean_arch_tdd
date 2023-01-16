@@ -24,20 +24,16 @@ dependencies:
   #functional programming
   fpdart: ^0.4.0
   #local storage
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
+   # SQLLite
+  sqflite: ^2.2.2
   path_provider: ^2.0.0
   path: ^1.8.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
-dependency_overrides:
-  test_api: ^0.4.17
-
 dev_dependencies:
-  hive_generator: ^2.0.0
-  build_runner: ^2.3.2
+ 
   flutter_test:
     sdk: flutter
   # test: ^1.16.0 
