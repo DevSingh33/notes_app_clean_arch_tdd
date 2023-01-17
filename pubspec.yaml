@@ -5,42 +5,31 @@ description: A new Flutter project.
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-#
 version: 1.0.0+1
 
 environment:
   sdk: ">=2.18.5 <3.0.0"
 
 dependencies:
+  cupertino_icons: ^1.0.2
+  dio: ^4.0.6
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
-
-  #service locator
-  get_it: ^7.2.0
-  #bloc state managment
   flutter_bloc: ^8.1.1
-  #value equality
-  equatable: ^2.0.5
-  #functional programming
   fpdart: ^0.4.0
-  #local storage
-   # SQLLite
-  sqflite: ^2.2.2
-  path_provider: ^2.0.0
+  get_it: ^7.2.0
   path: ^1.8.2
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  path_provider: ^2.0.0
+  sqflite: ^2.2.2
 
 dev_dependencies:
- 
-  flutter_test:
-    sdk: flutter
-  # test: ^1.16.0 
+  # test: ^1.16.0
   #for testing with mocks
   flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
   mocktail: ^0.3.0
-
 
 flutter:
   uses-material-design: true

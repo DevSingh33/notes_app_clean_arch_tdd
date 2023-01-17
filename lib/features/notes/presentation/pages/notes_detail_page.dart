@@ -10,14 +10,10 @@ class NoteDetails extends StatelessWidget {
   final String dateTime;
   const NoteDetails({super.key, required this.id, required this.title, required this.description, required this.dateTime});
 
-  
-
-
   @override
   Widget build(BuildContext context) {
     final deviceSettings = MediaQuery.of(context).size;
     return Scaffold(
-      
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Note'),
@@ -33,9 +29,7 @@ class NoteDetails extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          HelperFunctions.showBottomSheet(
-              isEditNote: true, id: id, ctx: context, title:title, description: description, dateTime: dateTime);
-          
+          HelperFunctions.showBottomSheet(isEditNote: true, id: id, ctx: context, title: title, description: description, dateTime: dateTime);
         },
         child: const Icon(Icons.edit, color: Colors.white),
       ),

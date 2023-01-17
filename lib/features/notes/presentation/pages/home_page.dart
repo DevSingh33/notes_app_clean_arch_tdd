@@ -21,8 +21,8 @@ class _NotesHomePageState extends State<NotesHomePage> {
     super.initState();
   }
 
+  //initilize the 'Notes Cubit' and call getAllNotes()
   void getNotesFromBloc() {
-    print('getNotesFromBloc() called');
     final bloc = BlocProvider.of<NotesCubit>(context);
     bloc.getAllNotes();
   }
@@ -32,8 +32,6 @@ class _NotesHomePageState extends State<NotesHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print("notes home page build...........");
-    // getNotesFromBloc();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
@@ -44,7 +42,6 @@ class _NotesHomePageState extends State<NotesHomePage> {
           if (state is NotesCubitError) {
             return Center(child: Text(state.errorMsg));
           } else if (state is NotesCubitLoading) {
-            print("loading state");
             return const Center(child: CircularProgressIndicator(backgroundColor: Colors.amber));
           } else if (state is NotesCubitLoaded) {
             final List<NoteEntity>? notes = state.notesList;
@@ -58,7 +55,6 @@ class _NotesHomePageState extends State<NotesHomePage> {
                     )),
               );
             } else if (notes != null && notes.isNotEmpty) {
-              print("notes list length: ${notes.length}");
               return Padding(
                 padding: const EdgeInsets.all(20),
                 child: ListView.builder(

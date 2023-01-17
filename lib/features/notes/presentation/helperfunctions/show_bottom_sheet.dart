@@ -1,5 +1,6 @@
 import 'package:assign_notes_app_clean_architecture_tdd/features/notes/domain/entities/note.dart';
 import 'package:assign_notes_app_clean_architecture_tdd/features/notes/presentation/bloc/cubit/notes_cubit.dart';
+import 'package:assign_notes_app_clean_architecture_tdd/features/notes/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,7 +47,7 @@ class HelperFunctions {
                           bloc.editANote(
                             NoteEntity(id: id, title: title!, description: description!, dateTime: dateTime!),
                           );
-                          Navigator.pop(ctx);
+                          Navigator.of(ctx).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const NotesHomePage()), (route) => false);
                         }
                       } else {
                         print('creating new note');
