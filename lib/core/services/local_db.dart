@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 
 //CLass for handling local database(SQFlite) and it's services like (CRUD operations)
 class DbService {
-  static  Database? _db;
+  static Database? _db;
 
   ///[createDB] to create the sql database in users device
   Future<Database> createDB() async {
@@ -18,7 +18,7 @@ class DbService {
     _db = await openDatabase(path, version: 1, onCreate: (Database db, int v) {
       db.execute('''
           CREATE TABLE notes(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             title TEXT,
             description TEXT,
             dateTime TEXT
@@ -28,10 +28,22 @@ class DbService {
     return _db!;
   }
 
+
+  ///[allItems] fetch all the items from the database table
+  Future allItems() async {
+    Database db = await createDB();
+    return db.query('notes');
+  }
+  ///[singleItem] fetch all the items from the database table
+  Future singleItem(int id) async {
+    Database db = await createDB();
+    return db.query('notes',where: "id=?",whereArgs: [id]);
+  }
+
   ///[createItem] create a [NoteModel] note item in the database table
   Future<int> createItem(NoteModel note) async {
     Database db = await createDB();
-    return db.insert('notes', note.toJson());
+    return db.insert('notes', note.toJson(),conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   ///[updateItem] to update the already present [note] item in database table
@@ -40,15 +52,16 @@ class DbService {
     return db.update('notes', note.toJson(), where: 'id = ?', whereArgs: [note.id]);
   }
 
-  ///[allItems] fetch all the items from the database table
-  Future allItems() async {
-    Database db = await createDB();
-    return db.query('notes');
-  }
 
   ///[deleteItem] delete the item with passed [id]
   Future<int> deleteItem(int id) async {
     Database db = await createDB();
     return db.delete('notes', where: 'id = ?', whereArgs: [id]);
+  }
+
+  ///[deleteAllItems] delete all the  items from the table
+  Future<int> deleteAllItems() async {
+    Database db = await createDB();
+    return db.delete('notes');
   }
 }

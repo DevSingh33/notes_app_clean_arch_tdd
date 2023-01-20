@@ -17,6 +17,11 @@ class NotesCubitLoaded extends NotesCubitState {
 
   const NotesCubitLoaded({required this.notesList});
 }
+class SingleNoteCubitLoaded extends NotesCubitState {
+  final NoteEntity note;
+
+  const SingleNoteCubitLoaded({required this.note});
+}
 
 class NotesCubitError extends NotesCubitState {
   final String errorMsg;

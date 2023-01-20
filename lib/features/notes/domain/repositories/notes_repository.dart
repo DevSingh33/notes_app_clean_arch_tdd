@@ -6,6 +6,8 @@ import 'package:fpdart/fpdart.dart';
 abstract class NotesRepository {
   ///[getNotes] will get the result in either(List of NoteEntity) or (Failure) if some error occured
   Future<Either<Failure, List<NoteEntity>>> getNotes();
+  ///[getSingleNote] will get the result in either(A NoteEntity) or (Failure) if some error occured
+  Future<Either<Failure, NoteEntity>> getSingleNote({required int noteId});
   ///[addNote] will add the [note] in db and result in either(NoteEntity) or (Failure) if some error occured
   Future<Either<Failure, NoteEntity>> addNote({required NoteEntity note});
   ///[deleteNote] will delete the [note] in db and result in either (True) or (Failure) if some error occured

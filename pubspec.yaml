@@ -22,6 +22,7 @@ dependencies:
   path: ^1.8.2
   path_provider: ^2.0.0
   sqflite: ^2.2.2
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   # test: ^1.16.0

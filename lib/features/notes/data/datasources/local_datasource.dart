@@ -8,20 +8,27 @@ abstract class LocalDataSource {
   ///[getAllNotes] will access the [LocalDataSource] class and will get all the items[notes] through it.
   Future<List<NoteModel>?> getAllNotes();
 
+  ///[getSingleNote] will access the [LocalDataSource] class and will get all the item[note] through it.
+  Future<NoteModel?> getSingleNote(int noteId);
+
   ///[addNote] will access the [LocalDataSource] class and will add items[note] to local db through it.
   Future<NoteModel> addNote(NoteModel note);
 
   ///[editNote] will access the [LocalDataSource] class and will update the [note] item in the local db(with new values) through it.
   Future<NoteModel> editNote(NoteModel note);
 
-  ///[getAllNotes] will access the [LocalDataSource] class and will delete the item[note] with (passed [id]) through it.
+  ///[deleteNote] will access the [LocalDataSource] class and will delete the item[note] with (passed [id]) through it.
   Future<bool> deleteNote(int noteId);
+
+  ///[deleteAllNote] will access the [LocalDataSource] class and will delete  all the item[note].
+  Future<bool> deleteAllNote();
 }
 
 ///Implementing the [LocalDataSource]
 class LocalDataSourceImpl implements LocalDataSource {
   final DbService dbService;
   LocalDataSourceImpl({required this.dbService});
+
   @override
   Future<List<NoteModel>?> getAllNotes() async {
     try {
@@ -37,9 +44,23 @@ class LocalDataSourceImpl implements LocalDataSource {
   }
 
   @override
+  Future<NoteModel?> getSingleNote(int noteId) async {
+    try {
+      final result = await dbService.singleItem(noteId);
+      if (result != null) {
+        return NoteModel.fromJson(result);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      throw CacheException();
+    }
+  }
+
+  @override
   Future<NoteModel> addNote(NoteModel note) async {
     try {
-      final result = dbService.createItem(note);
+      await dbService.createItem(note);
       return note;
     } catch (e) {
       throw CacheException();
@@ -50,6 +71,7 @@ class LocalDataSourceImpl implements LocalDataSource {
   Future<bool> deleteNote(int noteId) async {
     try {
       await dbService.deleteItem(noteId);
+
       return true;
     } catch (e) {
       throw CacheException();
@@ -61,6 +83,16 @@ class LocalDataSourceImpl implements LocalDataSource {
     try {
       await dbService.updateItem(note);
       return note;
+    } catch (e) {
+      throw CacheException();
+    }
+  }
+
+  @override
+  Future<bool> deleteAllNote() async {
+    try {
+      await dbService.deleteAllItems();
+      return true;
     } catch (e) {
       throw CacheException();
     }

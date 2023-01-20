@@ -15,8 +15,14 @@ class CacheFailure extends Failure {
   const CacheFailure(String msg) : super(msg: msg);
 }
 
+class NetworkFailure extends Failure {
+  const NetworkFailure(String msg) : super(msg: msg);
+}
+
 //custom error for all possible cases
 const String kerrorGetNotes = 'Error in getting notes';
 const String kerrorDeleteNote = 'Error in removing a note';
 const String kerrorUpdateNote = 'Error in updating a note';
 const String kerrorAddNote = 'Error adding a new note';
+const String kerrorNetworkFailure = 'Internet not available!';
+const String kerrorCheckConnection = 'Check your connection!';

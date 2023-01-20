@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.assign_notes_app_clean_architecture_tdd">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="assign_notes_app_clean_architecture_tdd"
         android:name="${applicationName}"
