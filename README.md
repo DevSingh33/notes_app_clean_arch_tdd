@@ -1,13 +1,16 @@
 # assign_notes_app_clean_architecture_tdd
 
-A new Flutter project.
+A basic Notes making app with CRUD functionality.
+Based on Reso Coder's Clean Architecture
 
+* Bloc for State management 
+* Clean Architecture
+* TDD
 ## Getting Started
 
 This project is a starting point for a Flutter application.
 
-A basic Notes making app with CRUD functionality.
-Based on Reso Coder's Clean Architecture
+
 
 https://resocoder.com/flutter-clean-architecture-tdd/
 
